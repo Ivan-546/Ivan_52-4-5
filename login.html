@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход - Maison Margiela</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <!-- Loading Placeholder -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="spinner"></div>
+        <p>Загрузка...</p>
+    </div>
+
+    <!-- Header Navigation -->
+    <header id="header" class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>Maison Margiela</h1>
+            </div>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Главная</a>
+                <a href="login.html" class="nav-link active">Вход</a>
+                <a href="registr.html" class="nav-link">Регистрация</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="login-container">
+        <div class="login-form-wrapper">
+            <div class="login-form">
+                <h2>Вход в Систему</h2>
+                <p class="form-subtitle">Добро пожаловать в Maison Margiela</p>
+                
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <input 
+                            type="email" 
+                            id="loginEmail" 
+                            name="email" 
+                            placeholder="ваш@email.com" 
+                            required
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Пароль</label>
+                        <input 
+                            type="password" 
+                            id="loginPassword" 
+                            name="password" 
+                            placeholder="••••••••" 
+                            required
+                        >
+                    </div>
+                    <div class="form-options">
+                        <label class="checkbox">
+                            <input type="checkbox" name="remember">
+                            <span>Запомнить меня</span>
+                        </label>
+                        <a href="#" class="forgot-password">Забыли пароль?</a>
+                    </div>
+                    <button type="submit" class="btn-submit" id="submitBtn">
+                        <span class="btn-text">ВОЙТИ</span>
+                        <span class="btn-loader" style="display:none;">
+                            <div class="spinner-small"></div>
+                        </span>
+                    </button>
+                </form>
+                <div class="form-footer">
+                    <p>Нет аккаунта? <a href="registr.html" class="link">Зарегистрируйтесь</a></p>
+                </div>
+                <div id="successModal" class="success-modal">
+                    <div class="success-content">
+                        <div class="success-icon">✓</div>
+                        <h3>Добро пожаловать!</h3>
+                        <p id="welcomeMessage"></p>
+                        <button class="btn-primary" onclick="goToHome()">Перейти на Главную</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="login.js"></script>
+</body>
+</html>
