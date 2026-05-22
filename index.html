@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maison Margiela</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="cursorGlow" class="cursor-glow" aria-hidden="true"></div>
+    <div id="loadingScreen" class="loading-screen">
+        <div class="spinner"></div>
+        <p>Загрузка...</p>
+        <div class="loading-progress">
+            <div class="loading-progress-fill" id="loadingProgressFill"></div>
+        </div>
+    </div>
+    <div id="visibilityToast" class="visibility-toast" role="status" aria-live="polite"></div>
+    <!-- //Обработка событий прокрутки страницы (полоса прогресса) -->
+    <div class="scroll-indicator" id="scrollIndicator" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Прогресс прокрутки"></div>
+    <header id="header" class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>Maison Margiela</h1>
+            </div>
+            <button type="button" class="burger-btn" id="burgerBtn" aria-label="Открыть меню" aria-expanded="false" aria-controls="mainNav">
+                <span class="burger-line"></span>
+                <span class="burger-line"></span>
+                <span class="burger-line"></span>
+            </button>
+            <div class="nav-overlay" id="navOverlay" aria-hidden="true"></div>
+            <nav class="nav" id="mainNav">
+                <a href="index.html" class="nav-link active">Главная</a>
+                <a href="login.html" class="nav-link">Вход</a>
+                <a href="registr.html" class="nav-link">Регистрация</a>
+                <div class="nav-actions">
+                    <div class="cart-badge" id="cartCounter" title="Товаров в корзине">0</div>
+                    <button class="btn-user" id="userBtn" title="Профиль (Горячая клавиша: U)" aria-label="Профиль"></button>
+                    <button class="btn-help" id="helpBtn" title="Справка (Горячая клавиша: H)">?</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <section class="hero">
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="https://media.istockphoto.com/id/1307120901/de/video/a-back-view-shooting-von-einer-br%C3%BCnette-frau-k%C3%A4ufer-in-einem-bekleidungsgesch%C3%A4ft-stehen-vor.mp4?s=mp4-640x640-is&k=20&c=zvx0txghagvUm3ZrYgJmNh-tTQe4r8-seQSfsYGNcas=" type="video/mp4">
+        </video>
+        <div class="hero-3d" id="hero3d">
+            <canvas id="canvas3d"></canvas>
+            <p class="hero-3d-hint">Зажмите и вращайте мышью</p>
+        </div>
+        <div class="hero-content">
+            <h2 class="hero-title">КОЛЛЕКЦИЯ 2026</h2>
+            <p class="hero-subtitle">Мастерство и инновация в каждом изделии</p>
+            <blockquote class="hero-quote reveal">
+                <p id="quoteText">«Мода — это отражение времени.»</p>
+                <cite id="quoteAuthor">— Maison Margiela</cite>
+                <button type="button" class="btn-quote" id="newQuoteBtn" title="Случайная цитата (Q)">↻ Новая цитата</button>
+            </blockquote>
+            <button class="btn-primary" onclick="document.querySelector('.catalog-section').scrollIntoView({behavior: 'smooth'})">Просмотреть Коллекцию</button>
+        </div>
+    </section>
+    <div id="cartProgressWrap" class="cart-progress-wrap" hidden>
+        <p class="progress-text" id="cartProgressText">Добавление в корзину...</p>
+        <div class="progress-bar">
+            <div class="progress-fill" id="cartProgressFill"></div>
+        </div>
+    </div>
+    <section class="catalog-section reveal">
+        <div class="container">
+            <h2>Наши коллекции</h2>
+            <div class="catalog-grid">
+                <div class="catalog-item reveal">
+                    <img data-src="3.png" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Коллекция 1" class="catalog-image lazy-image">
+                    <h3>Весна 2026</h3>
+                </div>
+                <div class="catalog-item reveal">
+                    <img data-src="1.png" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Коллекция 2" class="catalog-image lazy-image">
+                    <h3>Классическая линия</h3>
+                </div>
+                <div class="catalog-item reveal">
+                    <img data-src="2.png" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Коллекция 3" class="catalog-image lazy-image">
+                    <h3>Экспериментальный стиль</h3>
+                </div>
+                <div class="catalog-item reveal">
+                    <img data-src="4.png" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Коллекция 4" class="catalog-image lazy-image">
+                    <h3>Лимитированная серия</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="products-section reveal">
+        <div class="container">
+            <h2>Избранные Товары</h2>
+            <div class="products-grid">
+                <div class="product-card reveal">
+                    <div class="product-image">
+                        <img data-src="5.png" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Платье классическое" class="lazy-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Платье Классическое</h3>
+                        <p class="product-type">Вечерняя коллекция</p>
+                        <p class="product-price">₽ 15,500</p>
+                        <button class="btn-primary btn-add-cart" onclick="добавить_товар_в_корзину(1, 'Платье Классическое', 15500)">Добавить в корзину</button>
+                    </div>
+                </div>
+                <div class="product-card reveal">
+                    <div class="product-image">
+                        <img data-src="6.png" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Пальто минимализм" class="lazy-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Пальто Минимализм</h3>
+                        <p class="product-type">Верхняя одежда</p>
+                        <p class="product-price">₽ 22,000</p>
+                        <button class="btn-primary btn-add-cart" onclick="добавить_товар_в_корзину(2, 'Пальто Минимализм', 22000)">Добавить в корзину</button>
+                    </div>
+                </div>
+                <div class="product-card reveal">
+                    <div class="product-image">
+                        <img data-src="7.png" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Жилет из шелка" class="lazy-image">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Жилет из Шёлка</h3>
+                        <p class="product-type">Аксессуары</p>
+                        <p class="product-price">₽ 18,800</p>
+                        <button class="btn-primary btn-add-cart" onclick="добавить_товар_в_корзину(3, 'Жилет из Шёлка', 18800)">Добавить в корзину</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="закрыть_модаль()">&times;</span>
+            <h3>Моя Корзина</h3>
+            <div id="cartItems" class="cart-items">
+            </div>
+            <div class="cart-total">
+                <p>Итого товаров: <strong id="cartTotal">0</strong></p>
+            </div>
+        </div>
+    </div>
+    <div id="helpModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="закрыть_справку()">&times;</span>
+            <h3 class="help-modal-title">Горячие Клавиши</h3>
+            <div class="shortcuts-list">
+                <div class="shortcut-item">
+                    <kbd>U</kbd>
+                    <span>Показать профиль пользователя</span>
+                </div>
+                <div class="shortcut-item">
+                    <kbd>S</kbd>
+                    <span>Прокрутить к товарам</span>
+                </div>
+                <div class="shortcut-item">
+                    <kbd>H</kbd>
+                    <span>Открыть эту справку</span>
+                </div>
+                <div class="shortcut-item">
+                    <kbd>C</kbd>
+                    <span>Показать корзину товаров</span>
+                </div>
+                <div class="shortcut-item">
+                    <kbd>Q</kbd>
+                    <span>Новая случайная цитата</span>
+                </div>
+                <div class="shortcut-item">
+                    <kbd>ESC</kbd>
+                    <span>Закрыть модальные окна</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="footer-content">
+            <a href="https://github.com/ivannechaev167-create/Ivan_52-4-5-" id="githubLink" class="github-link" target="_blank" rel="noopener noreferrer" title="GitHub репозиторий проекта">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.825 1.095.825 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                </svg>
+            </a>
+            <div class="social-links">
+                <a href="https://facebook.com" target="_blank" title="Facebook">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                </a>
+                <a href="https://instagram.com" target="_blank" title="Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.117.63c-.794.297-1.473.702-2.146 1.375-.673.673-1.078 1.35-1.375 2.146-.297.788-.5 1.658-.56 2.948C.015 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.29.263 2.157.56 2.948.297.795.702 1.473 1.375 2.146.673.673 1.35 1.078 2.146 1.375.788.297 1.658.5 2.948.56C8.333 23.985 8.74 24 12 24s3.667-.015 4.947-.072c1.29-.06 2.157-.263 2.948-.56.795-.297 1.473-.702 2.146-1.375.673-.673 1.078-1.35 1.375-2.146.297-.788.5-1.658.56-2.948.058-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.29-.263-2.157-.56-2.948-.297-.795-.702-1.473-1.375-2.146-.673-.673-1.35-1.078-2.146-1.375-.788-.297-1.658-.5-2.948-.56C15.667.015 15.26 0 12 0zm0 2.16c3.203 0 3.585.009 4.849.07 1.171.06 1.805.262 2.227.436.562.217.96.477 1.382.896.419.42.679.819.896 1.381.174.422.376 1.056.436 2.227.061 1.264.07 1.646.07 4.849s-.009 3.585-.07 4.849c-.06 1.171-.262 1.805-.436 2.227-.217.562-.477.96-.896 1.382-.42.419-.819.679-1.381.896-.422.174-1.056.376-2.227.436-1.264.061-1.646.07-4.849.07s-3.585-.009-4.849-.07c-1.171-.06-1.805-.262-2.227-.436-.562-.217-.96-.477-1.382-.896-.419-.42-.679-.819-.896-1.381-.174-.422-.376-1.056-.436-2.227-.061-1.264-.07-1.646-.07-4.849s.009-3.585.07-4.849c.06-1.171.262-1.805.436-2.227.217-.562.477-.96.896-1.382.42-.419.819-.679 1.381-.896.422-.174 1.056-.376 2.227-.436 1.264-.061 1.646-.07 4.849-.07z"/>
+                        <circle cx="12" cy="12" r="3.846"/>
+                        <circle cx="18.406" cy="5.594" r=".9"/>
+                    </svg>
+                </a>
+                <a href="https://twitter.com" target="_blank" title="Twitter">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M23.953 4.57a10 10 0 002.856-3.915 9.958 9.958 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                    </svg>
+                </a>
+                <a href="https://github.com/ivanbelkov153-collab/Ivan_52-4-5-.git
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.475-2.236-1.986-2.236-1.081 0-1.722.722-2.004 1.418-.103.249-.129.597-.129.946v5.441h-3.554s.05-8.81 0-9.728h3.554v1.375c.427-.659 1.191-1.597 2.897-1.597 2.117 0 3.704 1.385 3.704 4.362v5.588zM5.337 8.855c-1.144 0-1.915-.762-1.915-1.715 0-.953.77-1.715 1.958-1.715 1.188 0 1.915.762 1.915 1.715 0 .953-.727 1.715-1.958 1.715zm1.614 11.597H3.615V9.579h3.336v10.873zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
